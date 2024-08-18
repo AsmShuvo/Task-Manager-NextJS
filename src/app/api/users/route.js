@@ -6,7 +6,7 @@ connectDB();
 export async function GET(request) {
   let users = [];
   try {
-    users = await User.find();
+    users = await User.find().select("-password");
   } catch (error) {
     console.log(error);
     return NextResponse.json({
@@ -54,13 +54,3 @@ export async function POST(request) {
     );
   }
 }
-
-export const DELETE = async (req) => {
-  console.log("Delete route called");
-  return NextResponse.json(
-    {
-      message: "Deleted successfully",
-    },
-    { status: 200 }
-  );
-};
