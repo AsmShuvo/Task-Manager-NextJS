@@ -34,15 +34,16 @@ export async function POST(request) {
     about,
     profileURL,
   });
+  console.log("User: ", user);
 
   try {
     const createdUser = await user.save();
     const response = NextResponse.json(user, {
       status: 201,
-    });
+    }); 
     return response;
   } catch (error) {
-    console.log(error);
+    console.log(error); 
     return NextResponse.json(
       {
         message: "failed to create user !!",
